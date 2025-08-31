@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الفصل الخامس: المتغيرات والمقاييس - قيس طلال الجازي</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #6a11cb; /* Deep Purple */
+            --secondary-color: #2575fc; /* Bright Blue */
+            --accent-color: #43e97b; /* Vibrant Green */
+            --text-color: #333;
+            --light-bg: #f4f7f6;
+            --card-bg: #ffffff;
+            --border-color: #e8e8e8;
+            --shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            line-height: 2;
+            background: linear-gradient(to top, #eef1f5, #ffffff);
+            color: var(--text-color);
+            margin: 0;
+            padding: 25px;
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: auto;
+            background-color: var(--card-bg);
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid var(--border-color);
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 40px;
+            border-radius: 15px 15px 0 0;
+            margin: -50px -50px 50px -50px;
+        }
+
+        header h1 {
+            font-size: 3.5em;
+            margin-bottom: 10px;
+            font-weight: 800;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        header p {
+            font-size: 1.5em;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+
+        .section-title {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin: 60px 0 30px 0;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 100px;
+            height: 5px;
+            background: linear-gradient(to left, var(--accent-color), var(--secondary-color));
+            border-radius: 3px;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+        }
+
+        .card-title {
+            font-size: 1.5em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid;
+        }
+
+        .card.dependent .card-title { color: #d9534f; border-color: #d9534f; }
+        .card.independent .card-title { color: #5cb85c; border-color: #5cb85c; }
+        .card.moderating .card-title { color: #f0ad4e; border-color: #f0ad4e; }
+        .card.intervening .card-title { color: #5bc0de; border-color: #5bc0de; }
+        
+        .card p {
+            font-size: 1.05em;
+        }
+
+        .card .example {
+            font-style: italic;
+            color: #555;
+            background: #f9f9f9;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border-right: 4px solid;
+        }
+        
+        .card.dependent .example { border-color: #d9534f; }
+        .card.independent .example { border-color: #5cb85c; }
+        .card.moderating .example { border-color: #f0ad4e; }
+        .card.intervening .example { border-color: #5bc0de; }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+            box-shadow: var(--shadow);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .comparison-table th, .comparison-table td {
+            padding: 18px;
+            text-align: right;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .comparison-table th {
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 1.2em;
+            font-weight: 700;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background-color: #f9f8fe;
+        }
+        
+        .comparison-table tr:hover {
+            background-color: #f1edff;
+        }
+
+        .comparison-table td:first-child {
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+
+        @media (max-width: 768px) {
+            .main-container { padding: 25px; }
+            header { padding: 30px; margin: -25px -25px 30px -25px; }
+            header h1 { font-size: 2.5em; }
+            header p { font-size: 1.2em; }
+            .section-title { font-size: 2em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <header>
+            <h1>الفصل الخامس: المتغيرات والمقاييس</h1>
+            <p><strong>إعداد وتقديم الطالب: قيس طلال الجازي</strong></p>
+        </header>
+
+        <p>يعتبر فهم المتغيرات والمقاييس حجر الزاوية في البحث العلمي. فالمتغيرات هي المفاهيم الأساسية التي يقوم الباحث بدراستها وقياسها، بينما المقاييس هي الأدوات التي تمكنه من تحويل هذه المفاهيم المجردة إلى بيانات قابلة للتحليل. هذا الفصل يوضح أنواع المتغيرات المختلفة، ومستويات القياس، وكيفية التأكد من جودة أدوات القياس المستخدمة.</p>
+
+        <h2 class="section-title">1. المتغيرات (Variables)</h2>
+        <p><strong>المتغير</strong> هو أي شيء أو خاصية يمكن أن تأخذ قيماً متعددة أو مختلفة. على سبيل المثال، العمر، الرضا الوظيفي، التحصيل الدراسي، وحجم المبيعات كلها متغيرات لأن قيمها تختلف من شخص لآخر أو من وقت لآخر.</p>
+        
+        <h3 style="color: var(--secondary-color); font-weight: 700; margin-top: 30px;">أ. أنواع المتغيرات حسب دورها في الدراسة</h3>
+        <div class="card-grid">
+            <div class="card dependent">
+                <h4 class="card-title">المتغير التابع</h4>
+                <p>هو المتغير الرئيسي الذي يتأثر بالمتغير المستقل، ويمثل النتيجة التي يسعى الباحث لفهمها.</p>
+                <p class="example"><strong>مثال:</strong> "رضا العملاء" في دراسة أثر جودة الخدمة على رضا العملاء.</p>
+            </div>
+            <div class="card independent">
+                <h4 class="card-title">المتغير المستقل</h4>
+                <p>هو المتغير الذي يؤثر في المتغير التابع، ويتم التحكم فيه أو قياسه لمعرفة مدى تأثيره.</p>
+                <p class="example"><strong>مثال:</strong> "جودة الخدمة" هي المتغير المستقل الذي يؤثر على رضا العملاء.</p>
+            </div>
+            <div class="card moderating">
+                <h4 class="card-title">المتغير الوسيط</h4>
+                <p>هو متغير ثالث يؤثر في قوة أو اتجاه العلاقة بين المتغير المستقل والتابع.</p>
+                <p class="example"><strong>مثال:</strong> "دافعية الطالب" تعدل العلاقة بين ساعات الدراسة والتحصيل.</p>
+            </div>
+            <div class="card intervening">
+                <h4 class="card-title">المتغير المعترض</h4>
+                <p>متغير يظهر ليفسر العلاقة بين المستقل والتابع، ويعمل كحلقة وصل منطقية بينهما.</p>
+                <p class="example"><strong>مثال:</strong> "التنشيط الابتكاري" يفسر كيف يؤدي تنوع الموظفين إلى زيادة كفاءة المنظمة.</p>
+            </div>
+        </div>
+
+        <h2 class="section-title">2. مقاييس القياس (Scales of Measurement)</h2>
+        <p>المقاييس هي الأدوات التي نستخدمها لتعيين أرقام للمتغيرات. هناك أربعة مستويات رئيسية للقياس، وكل مستوى يحدد نوع التحليل الإحصائي الممكن استخدامه.</p>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>المقياس</th>
+                    <th>الخاصية الأساسية</th>
+                    <th>مثال</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>الاسمي (Nominal)</td>
+                    <td>تصنيف البيانات في فئات (لا يوجد ترتيب)</td>
+                    <td>الجنس (1=ذكر، 2=أنثى)</td>
+                </tr>
+                <tr>
+                    <td>الترتيبي (Ordinal)</td>
+                    <td>ترتيب الفئات (لا يوضح حجم الفروق)</td>
+                    <td>المستوى التعليمي (ابتدائي، ثانوي، جامعي)</td>
+                </tr>
+                <tr>
+                    <td>الفئوي (Interval)</td>
+                    <td>ترتيب + مسافات متساوية بين الفئات (لا يوجد صفر حقيقي)</td>
+                    <td>درجة الحرارة المئوية</td>
+                </tr>
+                <tr>
+                    <td>النسبي (Ratio)</td>
+                    <td>ترتيب + مسافات متساوية + صفر حقيقي ومطلق</td>
+                    <td>الدخل الشهري، الوزن، العمر</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2 class="section-title">3. صلاحية (صدق) وثبات المقياس</h2>
+        <p>للتأكد من أن أداة القياس (مثل الاستبيان) جيدة وموثوقة، يجب أن تتمتع بخاصيتين أساسيتين:</p>
+        <div class="card-grid">
+            <div class="card" style="border-right: 5px solid var(--primary-color);">
+                <h4 class="card-title" style="color: var(--primary-color); border-color: var(--primary-color);">أ. الصلاحية أو الصدق (Validity)</h4>
+                <p>تعني أن الأداة تقيس بالفعل المفهوم الذي صُممت لقياسه. من أنواعها: صدق المحتوى، صدق المعيار، صدق المفهوم، والصدق الظاهري.</p>
+            </div>
+            <div class="card" style="border-right: 5px solid var(--accent-color);">
+                <h4 class="card-title" style="color: var(--accent-color); border-color: var(--accent-color);">ب. الثبات (Reliability)</h4>
+                <p>تعني أن أداة القياس تعطي نتائج متسقة ومستقرة إذا تم استخدامها بشكل متكرر. من أشهر طرق قياسه معامل "كرونباخ ألفا" (Cronbach's Alpha).</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
